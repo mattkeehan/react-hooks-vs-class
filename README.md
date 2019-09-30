@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Demonstrates identical functionality using a class (extending React.Component) and hooks.
+
+The functionality is a simple Axios call to get some json from Reddit. Shows loading, errors, and results.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -7,7 +11,10 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+Open [http://localhost:3000](http://localhost:3000) to view the hooks version in the browser.
+
+Open [http://localhost:3000/class](http://localhost:3000/class) to view the class version in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.

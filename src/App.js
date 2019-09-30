@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const [hasError, setErrors] = useState(false);
+  const [posts, setPosts] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      axios.get(`http://www.reddit.com/r/reactjs.json`)
+      .then(response => {
+        setPosts(response.data.data.children.map(obj => obj.data));
+      })
+      .catch(function (error) {
+        setErrors({error});
+      });
+    }
+    fetchData();
+  }, false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {hasError && (
+        <span>{hasError.error.message}</span>
+      )}
+      {!posts && (
+        <span>loading...</span>
+      )}
+      <ul>
+        {posts && posts.map((post, index) => {
+            return <li key={index}>{post.title}</li>
+          })}
+      </ul>
     </div>
   );
-}
-
+};
 export default App;
